@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F502CBC2BFE89C10045AD65 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F502CBB2BFE89C10045AD65 /* Station.swift */; };
+		7F502CBE2BFE89DF0045AD65 /* StationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F502CBD2BFE89DF0045AD65 /* StationFetcher.swift */; };
 		7F7BA32D2BFC693D009C0B09 /* IOS202map_04App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7BA32C2BFC693D009C0B09 /* IOS202map_04App.swift */; };
 		7F7BA32F2BFC693D009C0B09 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7BA32E2BFC693D009C0B09 /* ContentView.swift */; };
 		7F7BA3312BFC693E009C0B09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F7BA3302BFC693E009C0B09 /* Assets.xcassets */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F502CBB2BFE89C10045AD65 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		7F502CBD2BFE89DF0045AD65 /* StationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationFetcher.swift; sourceTree = "<group>"; };
 		7F7BA3292BFC693D009C0B09 /* IOS202map_04.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOS202map_04.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F7BA32C2BFC693D009C0B09 /* IOS202map_04App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS202map_04App.swift; sourceTree = "<group>"; };
 		7F7BA32E2BFC693D009C0B09 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 			children = (
 				7F7BA32C2BFC693D009C0B09 /* IOS202map_04App.swift */,
 				7F7BA32E2BFC693D009C0B09 /* ContentView.swift */,
+				7F502CBB2BFE89C10045AD65 /* Station.swift */,
+				7F502CBD2BFE89DF0045AD65 /* StationFetcher.swift */,
 				7F7BA3302BFC693E009C0B09 /* Assets.xcassets */,
 				7F7BA3322BFC693E009C0B09 /* Preview Content */,
 			);
@@ -258,6 +264,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F7BA32F2BFC693D009C0B09 /* ContentView.swift in Sources */,
+				7F502CBC2BFE89C10045AD65 /* Station.swift in Sources */,
+				7F502CBE2BFE89DF0045AD65 /* StationFetcher.swift in Sources */,
 				7F7BA32D2BFC693D009C0B09 /* IOS202map_04App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
