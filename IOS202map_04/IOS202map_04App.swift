@@ -11,7 +11,9 @@ import SwiftUI
 struct IOS202map_04App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                ContentView()
+            }
         }
     }
 }
