@@ -15,7 +15,8 @@ struct StationCollection: Codable {
     let station: [Station]
 }
 
-struct Station: Codable {
+struct Station: Codable, Identifiable {
+    var id: UUID = UUID()
     let name: String
     let prefecture: String
     let line: String
@@ -23,6 +24,9 @@ struct Station: Codable {
     let y: Double
     let postal: String
     let distance: String
-    let prev: String
-    let next: String
+    let prev: String?
+    let next: String?
+    private enum CodingKeys: String, CodingKey {
+            case name, prefecture, line, x, y, postal, distance, prev, next
+        }
 }

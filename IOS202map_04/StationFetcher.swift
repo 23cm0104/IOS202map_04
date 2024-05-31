@@ -10,10 +10,9 @@ import Foundation
 class StationFetcher: ObservableObject {
     @Published var stationList: [Station] = []
     
-    func fetchData(x: Double, y: Double) async
+    func fetchData(longitude: Double, latitude: Double) async
     throws {
-        
-        guard let url = URL(string: "https://express.heartrails.com/api/json?method=getStations&x=\(x).0&y=\(y)") else { throw FtetchError.badJSON }
+        guard let url = URL(string: "https://express.heartrails.com/api/json?method=getStations&x=\(longitude)&y=\(latitude)") else { throw FtetchError.badJSON }
         
         let (data, response) = try await URLSession.shared.data(for: URLRequest(url: url))
         
