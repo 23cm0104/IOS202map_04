@@ -68,7 +68,7 @@ struct ContentView: View {
                 Picker(selection: $vehicle, label: Text("移動方法")){
                     Text("どれでも").tag(0)
                     Text("歩いで").tag(1)
-                    Text("バイクで").tag(2)
+                    Text("クルマで").tag(2)
                     Text("電車で").tag(3)
                 }
             }.padding(.horizontal)
