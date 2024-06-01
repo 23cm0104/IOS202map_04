@@ -13,6 +13,7 @@ struct ContentView: View {
     @StateObject var fetcher = StationFetcher()
     @StateObject var locationManager = LocationManager()
     @State var showRoute: MKRoute?
+    @State var transportType: MKDirectionsTransportType?
     @State var vehicle = 0
     let ways: [MKDirectionsTransportType] = [.automobile, .walking, .any]
     
@@ -35,21 +36,25 @@ struct ContentView: View {
                                 UserAnnotation()
                                 Marker("\(station.name)", systemImage: "tram.circle", coordinate: CLLocationCoordinate2D(latitude: station.y, longitude: station.x))
                                 if let showRoute = locationManager.route?.polyline{
-                                    MapPolyline(showRoute).stroke(.blue, style: StrokeStyle(lineWidth: 6, dash: [6, 3]))
+                                    MapPolyline(showRoute).stroke(.blue, style: StrokeStyle(lineWidth: 6, lineCap: .round, dash: [0.5, 10]))
+//                                    MapPolyline(showRoute).stroke(Circle(), style: StrokeStyle(lineWidth: 6, dash: [6, 3]))
                                 }
                             }.mapControls {
                                 MapUserLocationButton().mapControlVisibility(.visible)
-                                MapScaleView()
+                                MapPitchToggle()
+                                MapCompass()
+                                MapScaleView().mapControlVisibility(.hidden)
                             }.onAppear {
                                 let way = ways[vehicle]
                                 switch way {
                                 case .walking:
-                                    locationManager.getRoute(from: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), to: CLLocationCoordinate2D(latitude: station.y, longitude: station.x), transportType: MKDirectionsTransportType.walking)
+                                    transportType = .walking
                                 case .any:
-                                    locationManager.getRoute(from: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), to: CLLocationCoordinate2D(latitude: station.y, longitude: station.x), transportType: MKDirectionsTransportType.any)
+                                    transportType = .any
                                 default:
-                                    locationManager.getRoute(from: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), to: CLLocationCoordinate2D(latitude: station.y, longitude: station.x), transportType: MKDirectionsTransportType.automobile)
+                                    transportType = .automobile
                                 }
+                                locationManager.getRoute(from: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), to: CLLocationCoordinate2D(latitude: station.y, longitude: station.x), transportType: transportType ?? .automobile)
                             }
                         }
                     }
