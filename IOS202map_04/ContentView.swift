@@ -15,7 +15,7 @@ struct ContentView: View {
     @State var showRoute: MKRoute?
     @State var transportType: MKDirectionsTransportType?
     @State var vehicle = 0
-    let ways: [MKDirectionsTransportType] = [.automobile, .walking, .any]
+    let ways: [MKDirectionsTransportType] = [.any, .walking, .automobile, .transit]
     
     var longitude: Double { return locationManager.currentLocation?.coordinate.longitude ?? 0.00 }
     var latitude: Double { return locationManager.currentLocation?.coordinate.latitude ?? 0.00 }
@@ -37,7 +37,6 @@ struct ContentView: View {
                                 Marker("\(station.name)", systemImage: "tram.circle", coordinate: CLLocationCoordinate2D(latitude: station.y, longitude: station.x))
                                 if let showRoute = locationManager.route?.polyline{
                                     MapPolyline(showRoute).stroke(.blue, style: StrokeStyle(lineWidth: 6, lineCap: .round, dash: [0.5, 10]))
-//                                    MapPolyline(showRoute).stroke(Circle(), style: StrokeStyle(lineWidth: 6, dash: [6, 3]))
                                 }
                             }.mapControls {
                                 MapUserLocationButton().mapControlVisibility(.visible)
@@ -49,12 +48,15 @@ struct ContentView: View {
                                 switch way {
                                 case .walking:
                                     transportType = .walking
-                                case .any:
-                                    transportType = .any
-                                default:
+                                case .automobile:
                                     transportType = .automobile
+                                case .transit:
+                                    transportType = .transit
+                                    
+                                default:
+                                    transportType = .any
                                 }
-                                locationManager.getRoute(from: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), to: CLLocationCoordinate2D(latitude: station.y, longitude: station.x), transportType: transportType ?? .automobile)
+                                locationManager.getRoute(from: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), to: CLLocationCoordinate2D(latitude: station.y, longitude: station.x), transportType: transportType ?? .any)
                             }
                         }
                     }
@@ -72,9 +74,10 @@ struct ContentView: View {
                 Text("移動方法を選択する")
                 Spacer()
                 Picker(selection: $vehicle, label: Text("移動方法")){
-                    Text("オートモード").tag(0)
+                    Text("どれでも").tag(0)
                     Text("歩いで").tag(1)
-                    Text("他の方法").tag(2)
+                    Text("バイクで").tag(2)
+                    Text("電車で").tag(3)
                 }
             }.padding(.horizontal)
             Button(
@@ -83,7 +86,7 @@ struct ContentView: View {
                 } }
             ) {
                 Label("更新", systemImage: "arrow.clockwise")
-            }.padding(.top)
+            }.padding()
         }.navigationViewStyle(.stack)
     }
 }
