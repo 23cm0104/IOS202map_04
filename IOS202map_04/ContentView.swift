@@ -33,7 +33,6 @@ struct ContentView: View {
             center: CLLocationCoordinate2D(latitude: y, longitude: x),
             span: MKCoordinateSpan(latitudeDelta: 0.0125, longitudeDelta: 0.0125)
         )
-        print(latitude)
         Task {
             let search = MKLocalSearch(request: request)
             let response = try? await search.start()
@@ -88,12 +87,16 @@ struct ContentView: View {
                                 
                                 HStack{
                                     Spacer()
-                                    
                                     Button(action: {
                                         search(for: "parking", y: station.y, x: station.x)
                                     }, label: {
                                         Label("駐車場", systemImage: "car")
-                                    }).padding(.top)
+                                    }).padding([.top, .trailing])
+                                    Button(action: {
+                                        search(for: "station", y: station.y, x: station.x)
+                                    }, label: {
+                                        Label("駅", systemImage: "tram")
+                                    }).padding([.top, .trailing])
                                     Spacer()
                                 }.background(.thinMaterial)
                             }
