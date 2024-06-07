@@ -8,7 +8,6 @@
 import SwiftUI
 import MapKit
 
-
 struct ContentView: View {
     @State private var visibleRegion: MKCoordinateRegion?
     @State private var position: MapCameraPosition = .automatic
@@ -84,7 +83,6 @@ struct ContentView: View {
                                         .clipShape(RoundedRectangle(cornerRadius: 10))
                                         .padding([.top, .horizontal])
                                 }
-                                
                                 HStack{
                                     Spacer()
                                     Button(action: {
@@ -103,7 +101,8 @@ struct ContentView: View {
                             .onChange(of: searchResults) {
                                 position = .automatic
                             }
-                        }}
+                        }
+                    }
                 ){
                     HStack {
                         Text(station.prefecture)
