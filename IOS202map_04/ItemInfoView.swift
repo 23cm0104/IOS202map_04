@@ -10,30 +10,31 @@ import MapKit
 
 struct ItemInfoView: View {
     @State private var lookAroundScene: MKLookAroundScene?
-    var selectedResult: MKMapItem
-    func getLookAroundScene () {
-        lookAroundScene = nil
-        Task {
-            let request = MKLookAroundSceneRequest(mapItem: selectedResult)
-            lookAroundScene = try? await request.scene
-        }
-    }
+    @State var selectedResult: MKMapItem?
+//    func getLookAroundScene () {
+//        lookAroundScene = nil
+//        Task {
+//            let request = MKLookAroundSceneRequest(mapItem: selectedResult)
+//            lookAroundScene = try? await request.scene
+//        }
+//    }
     var body: some View {
         LookAroundPreview(initialScene: lookAroundScene)
             .overlay(alignment: .bottomTrailing) {
                 HStack {
-                    Text ("\(selectedResult.name ?? "")")
+                    Text ("qqqqq")
                 }
                 .font(.caption)
                 .foregroundStyle(.white)
                 .padding (10)
             }
             .onAppear {
-                getLookAroundScene()
+//                getLookAroundScene()
             }
             .onChange(of: selectedResult) {
-                getLookAroundScene()
+//                getLookAroundScene()
             }
+            .mapItemDetailSheet(item: $selectedResult)
     }
 }
 //
