@@ -51,7 +51,7 @@ struct ContentView: View {
                             }
                             ForEach(searchResults, id: \.self) { result in
                                 Marker(item: result)
-                            }.annotationTitles(.hidden)
+                            }.annotationTitles(.hidden).mapItemDetailSelectionAccessory()
                         }.mapControls {
                             MapUserLocationButton().mapControlVisibility(.visible)
                             MapPitchToggle()
@@ -118,9 +118,9 @@ struct ContentView: View {
                 Spacer()
                 Picker(selection: $vehicle, label: Text("移動方法")){
                     Text("どれでも").tag(0)
-                    Text("歩いで").tag(1)
-                    Text("クルマで").tag(2)
-                    Text("電車で").tag(3)
+                    Text("歩い").tag(1)
+                    Text("クルマ").tag(2)
+                    Text("電車").tag(3)
                 }
             }.padding(.horizontal)
             Button(action: { Task {
